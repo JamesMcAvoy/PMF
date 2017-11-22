@@ -1,4 +1,4 @@
-# PMF
+# Projet PMF
 Pimp my fridge
 <img src="http://www.conrad.com/medias/global/ce/1000_1999/1800/1850/1855/1194424_ZB_00_FB.EPS_1000.jpg" width="150px">
 
