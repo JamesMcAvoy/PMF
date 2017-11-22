@@ -3,77 +3,91 @@ package model;
 
 
 public class Fridge {
-	private int internalTemp;
-	private int externalTemp;
-	private int internalHygro;
-	private int externalHygro;
+	private double internalTemp;
+	private double externalTemp;
+	private double internalHygro;
+	private double externalHygro;
 	private FridgeArrays fridgeArrays;
-	private int maxTemp;
+	private double maxTemp;
 	
 	public Fridge() {
 		this.internalTemp=0;
 		this.externalTemp=0;
 		this.internalHygro=0;
 		this.externalHygro=0;
-		this.calcMaxTemp();
+		this.maxTemp=this.calcMaxTemp();
 	}
 	
 	/**
-	public Fridge(int intTemp, int extTemp, int intHygro, int extHygro) {
+	public Fridge(double intTemp, double extTemp, double intHygro, double extHygro) {
 		this.internalTemp=intTemp;
 		this.externalTemp=extTemp;
 		this.internalHygro=intHygro;
 		this.externalHygro=extHygro;
-		this.calcMaxTemp();
+	
+		this.maxTemp=this.calcMaxTemp();
 	}
 	*/
 
 	// calcule la température maximale permettant d'éviter la condensation
-	private void calcMaxTemp() {
-		// TODO
+	private double calcMaxTemp() {
+		if(this.internalTemp<0 || this.internalTemp>60) {
+			// Envoyer une erreure de type température hors de range.
+			return 0;
+		}else {
+			return this.maxTemp=237.7*valIntermediaire(this.internalTemp, this.internalHygro)/(17.27-valIntermediaire(this.internalTemp, this.internalHygro));
+		}
+	}
+	private static double valIntermediaire(double temp, double hum) {
+		return 17.27*temp/(237.7+temp) + Math.log(hum);
 	}
 	
 	// Envoie un tableau à la vue pour afficher les graphiques
 	public void updateArrays() {
-		this.calcMaxTemp();
+		this.maxTemp=this.calcMaxTemp();
 		this.fridgeArrays.updateArrays(this.externalTemp, this.internalTemp, this.internalHygro);
+		
+		// ENVOYER THIS.FRIDGEARRAYS ET LES VALEURS ACTUELLES A LA VUE
+		
 	}
+	
+	
 	
 	// getters and setters
 	
-	public int getInternalTemp() {
+	public double getInternalTemp() {
 		return internalTemp;
 	}
 
-	public void setInternalTemp(int internalTemp) {
+	public void setInternalTemp(double internalTemp) {
 		this.internalTemp = internalTemp;
 	}
 
-	public int getExternalTemp() {
+	public double getExternalTemp() {
 		return externalTemp;
 	}
 
-	public void setExternalTemp(int externalTemp) {
+	public void setExternalTemp(double externalTemp) {
 		this.externalTemp = externalTemp;
 	}
 
-	public int getInternalHygro() {
+	public double getInternalHygro() {
 		return internalHygro;
 	}
 
-	public void setInternalHygro(int internalHygro) {
+	public void setInternalHygro(double internalHygro) {
 		this.internalHygro = internalHygro;
 	}
 
-	public int getExternalHygro() {
+	public double getExternalHygro() {
 		return externalHygro;
 	}
 
-	public void setExternalHygro(int externalHygro) {
+	public void setExternalHygro(double externalHygro) {
 		this.externalHygro = externalHygro;
 	}
 	
-	public int getMaxTemp() {
+	public double getMaxTemp() {
 		return maxTemp;
 	}
 	

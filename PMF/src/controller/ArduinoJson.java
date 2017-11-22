@@ -2,9 +2,9 @@ package controller;
 
 public class ArduinoJson {
 	private int error;
-	private int dht22Temp;
-	private int dht22Hygro;
-	private int diode;
+	private double dht22Temp;
+	private double dht22Hygro;
+	private double diode;
 	
 	
 	public int getError() {
@@ -13,22 +13,22 @@ public class ArduinoJson {
 	public void setError(int error) {
 		this.error = error;
 	}
-	public int getDht22Temp() {
+	public double getDht22Temp() {
 		return dht22Temp;
 	}
-	public void setDht22Temp(int dht22Temp) {
+	public void setDht22Temp(double dht22Temp) {
 		this.dht22Temp = dht22Temp;
 	}
-	public int getDht22Hygro() {
+	public double getDht22Hygro() {
 		return dht22Hygro;
 	}
-	public void setDht22Hygro(int dht22Hygro) {
+	public void setDht22Hygro(double dht22Hygro) {
 		this.dht22Hygro = dht22Hygro;
 	}
-	public int getDiode() {
+	public double getDiode() {
 		return diode;
 	}
-	public void setDiode(int diode) {
+	public void setDiode(double diode) {
 		this.diode = diode;
 	}
 	
