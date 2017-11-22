@@ -1,14 +1,15 @@
 package main;
 
 import controller.ArduinoLink;
+import view.MainFrame;
 
 public final class Main {
 
 	public static void main(String[] args) {
-		
-		ArduinoLink arduinoLink = new ArduinoLink();
+		MainFrame frame = new MainFrame();
+		/*ArduinoLink arduinoLink = new ArduinoLink();
 		arduinoLink.initialize();
-		Thread t=new Thread() {
+		Thread t=new Thread() {*/
 			/**
 			* lancer la vue, qui va lancer le controlleur et garder l'app active?
 			* le tuto dit :
@@ -18,9 +19,9 @@ public final class Main {
 				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
 			* }
 			*/
-		};
+		/*};
 		t.start();
-		System.out.println("started");
+		System.out.println("started");*/
 	}
 
 }

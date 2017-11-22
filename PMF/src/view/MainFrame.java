@@ -42,7 +42,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	
 	public MainFrame() {
 		this.setTitle("PMF");
-		this.setSize(1200, 800);
+		this.setSize(1400, 1000);
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -79,6 +79,8 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
 		JPanel panelChartHygro = new XChartPanel(chartHygro);
+		
+		consigneField.setText("18");
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -135,8 +137,13 @@ public class MainFrame extends JFrame implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource() == boutonConfirmer){
-			
+			consigne.setText("Consigne (en °C): "+consigneField.getText());
+			this.repaint();
+			//Rajouter l'envoi de la commande a Arduino
 		}
+		
+	}
+	public void updateChartTemp() {
 		
 	}
 	
