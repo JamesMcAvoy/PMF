@@ -1,6 +1,6 @@
 package model;
 
-class FridgeArrays {
+public class FridgeArrays {
 	private static int arrayLength=20;
 	private double[] intTempArray = new double[arrayLength];
 	private double[] extTempArray = new double[arrayLength];
@@ -19,4 +19,29 @@ class FridgeArrays {
 		this.extTempArray=shiftArray(this.extTempArray, extTemp);
 		this.intHygroArray=shiftArray(this.intHygroArray, intHygro);
 	}
+
+	public double[] getIntTempArray() {
+		return intTempArray;
+	}
+
+	public void setIntTempArray(double[] intTempArray) {
+		this.intTempArray = intTempArray;
+	}
+
+	public double[] getExtTempArray() {
+		return extTempArray;
+	}
+
+	public void setExtTempArray(double[] extTempArray) {
+		this.extTempArray = extTempArray;
+	}
+
+	public double[] getIntHygroArray() {
+		return intHygroArray;
+	}
+
+	public void setIntHygroArray(double[] intHygroArray) {
+		this.intHygroArray = intHygroArray;
+	}
+	
 }

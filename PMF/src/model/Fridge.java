@@ -90,5 +90,9 @@ public class Fridge {
 	public double getMaxTemp() {
 		return maxTemp;
 	}
+
+	public FridgeArrays getFridgeArrays() {
+		return fridgeArrays;
+	}
 	
 }
