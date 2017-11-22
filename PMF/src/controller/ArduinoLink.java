@@ -8,6 +8,7 @@ import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import model.Fridge;
+import model.Error;
 
 import java.util.Enumeration;
 import com.google.gson.*;
@@ -108,13 +109,21 @@ public class ArduinoLink implements SerialPortEventListener {
 				
 				ArduinoJson arduinoJson = gson.fromJson(inputLine, ArduinoJson.class);
 				
-				fridge.setInternalHygro(arduinoJson.getDht22Hygro());
-				fridge.setInternalTemp(arduinoJson.getDht22Temp());
-				fridge.setExternalTemp(arduinoJson.getDiode());
-				fridge.updateArrays();
+				if(arduinoJson.getError()==0) {
+					fridge.setInternalHygro(arduinoJson.getDht22Hygro());
+					fridge.setInternalTemp(arduinoJson.getDht22Temp());
+					fridge.setExternalTemp(arduinoJson.getDiode());
+					fridge.updateArrays();
+				} else {
+					Error err=new Error(arduinoJson.getError());
+					
+					// ENVOYER ERREUR A VUE
+					
+				}
+				
 				
 			} catch(Exception e) {
-				// envoyer erreure à vue
+				// ENVOYER ERREURE A VUE
 			}
 		}
 	}
