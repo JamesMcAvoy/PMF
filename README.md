@@ -11,5 +11,5 @@ Le Frigo-kawaï est un réfrigérateur connecté qui affiche en temps réel sa t
 ### Équipe
 * Thomas Buet : chef de projet, montage
 * Mathieu Brisset : montage et programme Arduino
-* Julien Bischoff : développement de la vue
-* Victor Petitjean : développement de la communication Arduino/Java
+* Julien Bischoff : développement de la vue et diagrammes
+* Victor Petitjean : développement de la communication Arduino/Java et diagrammes
