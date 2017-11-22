@@ -1,13 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import gnu.io.CommPortIdentifier;
-import gnu.io.SerialPort;
-import gnu.io.SerialPortEvent;
-import gnu.io.SerialPortEventListener;
-
 
 
 public class Fridge {
@@ -15,8 +7,18 @@ public class Fridge {
 	private int externalTemp;
 	private int internalHygro;
 	private int externalHygro;
+	private FridgeArrays fridgeArrays;
 	private int maxTemp;
 	
+	public Fridge() {
+		this.internalTemp=0;
+		this.externalTemp=0;
+		this.internalHygro=0;
+		this.externalHygro=0;
+		this.calcMaxTemp();
+	}
+	
+	/**
 	public Fridge(int intTemp, int extTemp, int intHygro, int extHygro) {
 		this.internalTemp=intTemp;
 		this.externalTemp=extTemp;
@@ -24,11 +26,18 @@ public class Fridge {
 		this.externalHygro=extHygro;
 		this.calcMaxTemp();
 	}
+	*/
 
+	// calcule la température maximale permettant d'éviter la condensation
 	private void calcMaxTemp() {
 		// TODO
 	}
 	
+	// Envoie un tableau à la vue pour afficher les graphiques
+	public void updateArrays() {
+		this.calcMaxTemp();
+		this.fridgeArrays.updateArrays(this.externalTemp, this.internalTemp, this.internalHygro);
+	}
 	
 	// getters and setters
 	
