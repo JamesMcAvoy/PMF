@@ -125,8 +125,8 @@ public class ArduinoLink implements SerialPortEventListener {
 				if(arduinoJson.getError()==0) {
 					this.fridge.setInternalHygro(arduinoJson.getDht22Hygro());
 					this.fridge.setInternalTemp(arduinoJson.getDht22Temp());
-					this.fridge.setExternalTemp(arduinoJson.getDiodeTemp());
-					this.fridge.setExternalDiode(arduinoJson.getDiodeExt());
+					this.fridge.setExternalTemp(arduinoJson.getDiodeExt());
+					this.fridge.setExternalDiode(arduinoJson.getDiodeTemp());
 					
 					this.fridge.updateArrays();
 					
