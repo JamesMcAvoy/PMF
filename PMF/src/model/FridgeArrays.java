@@ -7,10 +7,10 @@ public class FridgeArrays {
 	private double[] intHygroArray = new double[arrayLength];
 	
 	private static double[] shiftArray(double[] array, double valueToAdd) {
-		for(int i=arrayLength; i>0; i--) {
+		for(int i=arrayLength-1; i>0; i--) {
 			array[i-1]=array[i];
 		}
-		array[arrayLength]=valueToAdd;
+		array[0]=valueToAdd;
 		return array;
 	}
 	

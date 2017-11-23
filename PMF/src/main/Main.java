@@ -1,15 +1,18 @@
 package main;
 
 import controller.ArduinoLink;
-import view.MainFrame;
+//import view.MainFrame;
 
 public final class Main {
+	
+	public static ArduinoLink arduinoLink;	// Pour pouvoir accéder au controller depuis la vue
 
 	public static void main(String[] args) {
-		MainFrame frame = new MainFrame();
-		/*ArduinoLink arduinoLink = new ArduinoLink();
+		// MainFrame frame = new MainFrame();	/La vue est initialisée dans le controller
+		arduinoLink = new ArduinoLink();
 		arduinoLink.initialize();
-		Thread t=new Thread() {*/
+		
+		//Thread t=new Thread() {
 			/**
 			* lancer la vue, qui va lancer le controlleur et garder l'app active?
 			* le tuto dit :

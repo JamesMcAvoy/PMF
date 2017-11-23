@@ -4,7 +4,8 @@ public class ArduinoJson {
 	private int error;
 	private double dht22Temp;
 	private double dht22Hygro;
-	private double diode;
+	private double diodeTemp;
+	private double diodeExt;
 	
 	
 	public int getError() {
@@ -25,11 +26,17 @@ public class ArduinoJson {
 	public void setDht22Hygro(double dht22Hygro) {
 		this.dht22Hygro = dht22Hygro;
 	}
-	public double getDiode() {
-		return diode;
+	public double getDiodeTemp() {
+		return diodeTemp;
 	}
-	public void setDiode(double diode) {
-		this.diode = diode;
+	public void setDiodeTemp(double diodeExt) {
+		this.diodeTemp = diodeExt;
+	}
+	public double getDiodeExt() {
+		return diodeExt;
+	}
+	public void setDiodeExt(double diodeExt) {
+		this.diodeExt = diodeExt;
 	}
 	
 }

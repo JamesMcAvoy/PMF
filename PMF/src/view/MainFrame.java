@@ -21,6 +21,7 @@ import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 
+import main.Main;
 import model.Fridge;
 
 public class MainFrame extends JFrame implements ActionListener{
@@ -33,17 +34,17 @@ public class MainFrame extends JFrame implements ActionListener{
 	
 	private JPanel panel = new JPanel();
 	
-	JLabel intTemp = new JLabel("Température interne: 20°C", SwingConstants.CENTER);
-	JLabel extTemp = new JLabel("Température externe: 20°C", SwingConstants.CENTER);
-	JLabel intHygro = new JLabel("Humidité interne: 30%", SwingConstants.CENTER);
-	JLabel rosee = new JLabel("Point de rosée: 60°C", SwingConstants.CENTER);
-	JLabel consigne = new JLabel("Consigne (en °C):", SwingConstants.CENTER);
+	JLabel intTemp = new JLabel("Tempï¿½rature interne: 20ï¿½C", SwingConstants.CENTER);
+	JLabel extTemp = new JLabel("Tempï¿½rature externe: 20ï¿½C", SwingConstants.CENTER);
+	JLabel intHygro = new JLabel("Humiditï¿½ interne: 30%", SwingConstants.CENTER);
+	JLabel rosee = new JLabel("Point de rosï¿½e: 60ï¿½C", SwingConstants.CENTER);
+	JLabel consigne = new JLabel("Consigne (en ï¿½C):", SwingConstants.CENTER);
 	JFormattedTextField consigneField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	JButton boutonConfirmer = new JButton("Changer!");
 	JButton switchBoutonFan = new JButton("Activer le ventilateur!");
 	
-	XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
-	XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Température(°C)").build();
+	XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humiditï¿½(%)").build();
+	XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Tempï¿½rature(ï¿½C)").build();
 	
 	public MainFrame() {
 		this.setTitle("PMF");
@@ -84,14 +85,14 @@ public class MainFrame extends JFrame implements ActionListener{
 		double[] xDataDefault = new double[] { 0.0, 1.0};
 		double[] yDataDefault = new double[] { 0.0, 1.0};
 		
-		XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Température(°C)").build();
+		XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Tempï¿½rature(ï¿½C)").build();
 		JPanel panelChartTemp = new XChartPanel(chartTemp);
-		chartTemp.addSeries("Température intérieure", xDataDefault, yDataDefault);
-		chartTemp.addSeries("Température extérieure", xDataDefault, yDataDefault);		
+		chartTemp.addSeries("Tempï¿½rature intï¿½rieure", xDataDefault, yDataDefault);
+		chartTemp.addSeries("Tempï¿½rature extï¿½rieure", xDataDefault, yDataDefault);		
 		
-		XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
+		XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humiditï¿½(%)").build();
 		JPanel panelChartHygro = new XChartPanel(chartHygro);
-		chartHygro.addSeries("Humidité intérieure", xDataDefault, yDataDefault);	
+		chartHygro.addSeries("Humiditï¿½ intï¿½rieure", xDataDefault, yDataDefault);	
 
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -150,38 +151,40 @@ public class MainFrame extends JFrame implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource() == boutonConfirmer){
-			consigne.setText("Consigne (en °C): "+consigneField.getText());
+			consigne.setText("Consigne (en ï¿½C): "+consigneField.getText());
 			this.repaint();
 			//Rajouter l'envoi de la commande a Arduino
 		}else if(arg0.getSource() == switchBoutonFan) {
 			if(switchBoutonFan.getBackground()==Color.RED) {
 				System.out.println("hey");
-				switchBoutonFan.setText("Désactiver le ventilateur!");
+				switchBoutonFan.setText("Dï¿½sactiver le ventilateur!");
 				switchBoutonFan.setBackground(Color.GREEN);
-				//Activer le ventilo
 				this.repaint();
+				Main.arduinoLink.switchFan();
+				//Activer le ventilo
 			}else {
 				System.out.println("ho");
 				switchBoutonFan.setText("Activer le ventilateur!");
 				switchBoutonFan.setBackground(Color.RED);
-				//Desactiver le ventilo
 				this.repaint();
+				//Desactiver le ventilo
+				Main.arduinoLink.switchFan();
 			}
 		}	
 	}
 	public void updateChart(Fridge fridge) {
 		double[] xData = new double[] { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0 };
-		chartTemp.updateXYSeries("Température intérieure", xData, fridge.getFridgeArrays().getIntTempArray(), null);
-		chartTemp.updateXYSeries("Température extérieure", xData, fridge.getFridgeArrays().getExtTempArray(), null);
-		chartTemp.updateXYSeries("Humidité intérieure", xData, fridge.getFridgeArrays().getIntHygroArray(), null);
+		chartTemp.updateXYSeries("Tempï¿½rature intï¿½rieure", xData, fridge.getFridgeArrays().getIntTempArray(), null);
+		chartTemp.updateXYSeries("Tempï¿½rature extï¿½rieure", xData, fridge.getFridgeArrays().getExtTempArray(), null);
+		chartTemp.updateXYSeries("Humiditï¿½ intï¿½rieure", xData, fridge.getFridgeArrays().getIntHygroArray(), null);
 		this.repaint();
 	}
 	
 	public void updateValues(Fridge fridge) {
-		intTemp.setText("Température interne: "+fridge.getInternalTemp()+"°C");
-		extTemp.setText("Température externe: "+fridge.getInternalTemp()+"°C");
-		intHygro.setText("Humidité interne: "+fridge.getInternalTemp()+"%");
-		rosee.setText("Point de rosée: "+fridge.getInternalTemp()+"°C");
+		intTemp.setText("Tempï¿½rature interne: "+fridge.getInternalTemp()+"ï¿½C");
+		extTemp.setText("Tempï¿½rature externe: "+fridge.getInternalTemp()+"ï¿½C");
+		intHygro.setText("Humiditï¿½ interne: "+fridge.getInternalTemp()+"%");
+		rosee.setText("Point de rosï¿½e: "+fridge.getInternalTemp()+"ï¿½C");
 	}
 	
 }

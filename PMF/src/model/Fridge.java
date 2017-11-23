@@ -6,15 +6,19 @@ public class Fridge {
 	private double internalTemp;
 	private double externalTemp;
 	private double internalHygro;
-	private double externalHygro;
+	private double externalDiode;
 	private FridgeArrays fridgeArrays;
 	private double maxTemp;
+	private double tempConsigne;
+	private boolean isFanOn;
 	
 	public Fridge() {
 		this.internalTemp=0;
 		this.externalTemp=0;
 		this.internalHygro=0;
-		this.externalHygro=0;
+		this.externalDiode=0;
+		this.tempConsigne=20;
+		this.isFanOn=false;
 		this.maxTemp=this.calcMaxTemp();
 	}
 	
@@ -23,7 +27,7 @@ public class Fridge {
 		this.internalTemp=intTemp;
 		this.externalTemp=extTemp;
 		this.internalHygro=intHygro;
-		this.externalHygro=extHygro;
+		this.externalDiode=extHygro;
 	
 		this.maxTemp=this.calcMaxTemp();
 	}
@@ -79,12 +83,12 @@ public class Fridge {
 		this.internalHygro = internalHygro;
 	}
 
-	public double getExternalHygro() {
-		return externalHygro;
+	public double getExternalDiode() {
+		return externalDiode;
 	}
 
-	public void setExternalHygro(double externalHygro) {
-		this.externalHygro = externalHygro;
+	public void setExternalDiode(double externalDiode) {
+		this.externalDiode = externalDiode;
 	}
 	
 	public double getMaxTemp() {
@@ -93,6 +97,20 @@ public class Fridge {
 
 	public FridgeArrays getFridgeArrays() {
 		return fridgeArrays;
+	}
+	public void setTempConsigne(double tempConsigne) {
+		this.tempConsigne=tempConsigne;
+	}
+	public double getTempConsigne() {
+		return tempConsigne;
+	}
+
+	public boolean isFanOn() {
+		return isFanOn;
+	}
+
+	public void setFanOn(boolean isFanOn) {
+		this.isFanOn = isFanOn;
 	}
 	
 }
