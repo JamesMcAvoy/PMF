@@ -139,14 +139,13 @@ public class ArduinoLink implements SerialPortEventListener {
 					
 				} else {
 					Error err=new Error(arduinoJson.getError());
-					
-					// ENVOYER ERREUR A VUE
+					frame.errorPopUp(err.getErrStrAct());
 					
 				}
 				
 				
 			} catch(Exception e) {
-				// ENVOYER ERREURE A VUE
+				frame.errorPopUp(e.getMessage());
 			}
 		}
 	}
@@ -166,9 +165,7 @@ public class ArduinoLink implements SerialPortEventListener {
 		try {
 			output.write(strToSend.getBytes());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e);
-			// ENVOYER ERREUR A VUE
+			frame.errorPopUp(e.getMessage());
 		}
 	}
 }
