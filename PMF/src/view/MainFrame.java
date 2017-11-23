@@ -120,11 +120,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		gbc.gridx=2;
 		gbc.gridy=0;
-		panel.add(switchBoutonFan, gbc);
+		panel.add(intHygro, gbc);
 		
 		gbc.gridx=2;
 		gbc.gridy=1;
-		panel.add(intHygro, gbc);
+		panel.add(switchBoutonFan, gbc);
 		
 		
 		gbc.gridx=2;
