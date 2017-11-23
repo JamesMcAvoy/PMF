@@ -5,10 +5,10 @@ import controller.ArduinoLink;
 
 public final class Main {
 	
-	public static ArduinoLink arduinoLink;	// Pour pouvoir accéder au controller depuis la vue
+	public static ArduinoLink arduinoLink;	// Pour pouvoir accÃ©der au controller depuis la vue
 
 	public static void main(String[] args) {
-		// MainFrame frame = new MainFrame();	/La vue est initialisée dans le controller
+		// MainFrame frame = new MainFrame();	/La vue est initialisÃ©e dans le controller
 		arduinoLink = new ArduinoLink();
 		arduinoLink.initialize();
 		

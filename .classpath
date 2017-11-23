@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="PMF/src"/>
-	<classpathentry kind="lib" path="C:/Users/JULIEN/Downloads/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JULIEN/Downloads/RXTXcomm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/JULIEN/git/PMF"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/JULIEN/Downloads/gson-2.6.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/JULIEN/Downloads/xchart-3.5.0/xchart-3.5.0/xchart-3.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>

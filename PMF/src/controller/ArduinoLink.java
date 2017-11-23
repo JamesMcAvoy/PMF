@@ -12,6 +12,7 @@ import model.Fridge;
 import model.Error;
 import view.MainFrame;
 
+import java.util.Arrays;
 import java.util.Enumeration;
 import com.google.gson.*;
 
@@ -110,9 +111,12 @@ public class ArduinoLink implements SerialPortEventListener {
 	@Override
 	// handle an event on the serial port
 	public synchronized void serialEvent (SerialPortEvent oEvent) {
+		
 		if(oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=input.readLine();
+				
+				System.out.print(inputLine+"\n");
 				
 				// parse json
 				
@@ -123,9 +127,15 @@ public class ArduinoLink implements SerialPortEventListener {
 					this.fridge.setInternalTemp(arduinoJson.getDht22Temp());
 					this.fridge.setExternalTemp(arduinoJson.getDiodeTemp());
 					this.fridge.setExternalDiode(arduinoJson.getDiodeExt());
+					
 					this.fridge.updateArrays();
 					
+					System.out.println("array temp ext: "+Arrays.toString(this.fridge.getFridgeArrays().getExtTempArray()));
+					System.out.println("array temp int: "+Arrays.toString(this.fridge.getFridgeArrays().getIntTempArray()));
+					System.out.println("array hygro int: "+Arrays.toString(this.fridge.getFridgeArrays().getIntHygroArray()));
+					
 					this.frame.updateChart(this.fridge);
+					this.frame.updateValues(this.fridge);
 					
 				} else {
 					Error err=new Error(arduinoJson.getError());
@@ -151,12 +161,13 @@ public class ArduinoLink implements SerialPortEventListener {
 		sendJsonToArduino();
 	}
 	private void sendJsonToArduino() {
+		System.out.println("hey");
 		String strToSend="{\"tempConsigne\":"+Double.toString(this.fridge.getTempConsigne())+", \"ventiloConsigne\":"+(this.fridge.isFanOn()==true?"1":"0")+"}";
 		try {
 			output.write(strToSend.getBytes());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			
+			System.out.println(e);
 			// ENVOYER ERREUR A VUE
 		}
 	}

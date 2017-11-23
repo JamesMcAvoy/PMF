@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -44,7 +45,10 @@ public class MainFrame extends JFrame implements ActionListener{
 	JButton switchBoutonFan = new JButton("Activer le ventilateur!");
 	
 	XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
+	JPanel panelChartHygro = new XChartPanel(chartHygro);
 	XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Température(°C)").build();
+	JPanel panelChartTemp = new XChartPanel(chartTemp);
+	
 	
 	public MainFrame() {
 		this.setTitle("PMF");
@@ -85,15 +89,15 @@ public class MainFrame extends JFrame implements ActionListener{
 		rosee.setPreferredSize(new Dimension(1000,200));
 		
 		double[] xDataDefault = new double[] { 0.0, 1.0};
-		double[] yDataDefault = new double[] { 0.0, 1.0};
+		double[] yDataDefault = new double[] { 0.0, 0.0};
 		
-		XYChart chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Température(°C)").build();
-		JPanel panelChartTemp = new XChartPanel(chartTemp);
+		chartTemp = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Température(°C)").build();
+		panelChartTemp = new XChartPanel(chartTemp);
 		chartTemp.addSeries("Température intérieure", xDataDefault, yDataDefault);
 		chartTemp.addSeries("Température extérieure", xDataDefault, yDataDefault);		
 		
-		XYChart chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
-		JPanel panelChartHygro = new XChartPanel(chartHygro);
+		chartHygro = new XYChartBuilder().width(400).height(400).xAxisTitle("Temps").yAxisTitle("Humidité(%)").build();
+		panelChartHygro = new XChartPanel(chartHygro);
 		chartHygro.addSeries("Humidité intérieure", xDataDefault, yDataDefault);	
 
 		
@@ -177,18 +181,21 @@ public class MainFrame extends JFrame implements ActionListener{
 		}	
 	}
 	public void updateChart(Fridge fridge) {
-		double[] xData = new double[] { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0 };
-		chartTemp.updateXYSeries("Température intérieure", xData, fridge.getFridgeArrays().getIntTempArray(), null);
-		chartTemp.updateXYSeries("Température extérieure", xData, fridge.getFridgeArrays().getExtTempArray(), null);
-		chartTemp.updateXYSeries("Humidité intérieure", xData, fridge.getFridgeArrays().getIntHygroArray(), null);
+		chartTemp.updateXYSeries("Température intérieure", null, fridge.getFridgeArrays().getIntTempArray(), null);
+		chartTemp.updateXYSeries("Température extérieure", null, fridge.getFridgeArrays().getExtTempArray(), null);
+		chartHygro.updateXYSeries("Humidité intérieure", null, fridge.getFridgeArrays().getIntHygroArray(), null);
+		panelChartTemp.repaint();
+		panelChartHygro.repaint();
+		this.validate();
+	    this.setVisible(true);
 		this.repaint();
 	}
 	
 	public void updateValues(Fridge fridge) {
 		intTemp.setText("Température interne: "+fridge.getInternalTemp()+"°C");
-		extTemp.setText("Température externe: "+fridge.getInternalTemp()+"°C");
-		intHygro.setText("Humidité interne: "+fridge.getInternalTemp()+"%");
-		rosee.setText("Point de rosée: "+fridge.getInternalTemp()+"°C");
+		extTemp.setText("Température externe: "+fridge.getExternalTemp()+"°C");
+		intHygro.setText("Humidité interne: "+fridge.getInternalHygro()+"%");
+		rosee.setText("Point de rosée: "+fridge.getMaxTemp()+"°C");
 	}
 	
 }

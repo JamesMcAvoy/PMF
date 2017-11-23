@@ -19,6 +19,7 @@ public class Fridge {
 		this.externalDiode=0;
 		this.tempConsigne=20;
 		this.isFanOn=false;
+		this.fridgeArrays=new FridgeArrays();
 		this.maxTemp=this.calcMaxTemp();
 	}
 	
@@ -50,7 +51,6 @@ public class Fridge {
 	public void updateArrays() {
 		this.maxTemp=this.calcMaxTemp();
 		this.fridgeArrays.updateArrays(this.externalTemp, this.internalTemp, this.internalHygro);
-		
 		// ENVOYER THIS.FRIDGEARRAYS ET LES VALEURS ACTUELLES A LA VUE
 		
 	}
