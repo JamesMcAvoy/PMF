@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -7,9 +8,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -51,7 +57,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	JPanel panelChartTemp = new XChartPanel(chartTemp);
 	
 	
-	public MainFrame() {
+	
+	public MainFrame() throws IOException {
 		this.setTitle("PMF");
 		this.setSize(1400, 1000);
 		this.setLocationRelativeTo(null); 
@@ -101,6 +108,13 @@ public class MainFrame extends JFrame implements ActionListener{
 		panelChartHygro = new XChartPanel(chartHygro);
 		chartHygro.addSeries("Humidité intérieure", xDataDefault, yDataDefault);	
 
+		BufferedImage myPicture = ImageIO.read(new File("images/kawai.png"));
+		JPanel kawaiPane = new JPanel();
+	    JLabel kawaiLabel = new JLabel(new ImageIcon(myPicture));
+	    kawaiPane.setPreferredSize(new Dimension(100,100));
+	    kawaiPane.setLayout(new BorderLayout());
+	    kawaiPane.setBackground(backgroundColor);
+	    kawaiPane.add(kawaiLabel, BorderLayout.SOUTH);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -110,24 +124,29 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		panel.add(extTemp, gbc);
+		panel.add(consigne, gbc);
 
 		gbc.gridx=0;
 		gbc.gridy=1;
-		panel.add(intTemp, gbc);
+		panel.add(extTemp, gbc);
 		
 		gbc.weightx=1;
+		
 		gbc.gridx=0;
 		gbc.gridy=2;
-		panel.add(consigne, gbc);
+		panel.add(intTemp, gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=0;
+		panel.add(consigneField, gbc);
 		
 		gbc.gridx=1;
 		gbc.gridy=2;
-		panel.add(consigneField, gbc);
+		panel.add(kawaiPane, gbc);
 		
 		gbc.gridx=2;
 		gbc.gridy=0;
-		panel.add(switchBoutonFan, gbc);
+		panel.add(boutonConfirmer, gbc);
 		
 		gbc.gridx=2;
 		gbc.gridy=1;
@@ -136,7 +155,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		gbc.gridx=2;
 		gbc.gridy=2;
-		panel.add(boutonConfirmer, gbc);
+		panel.add(switchBoutonFan, gbc);
 
 		gbc.gridx=4;
 		gbc.gridy=0;

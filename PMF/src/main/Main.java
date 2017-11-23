@@ -1,5 +1,7 @@
 package main;
 
+import java.io.IOException;
+
 import controller.ArduinoLink;
 //import view.MainFrame;
 
@@ -7,7 +9,7 @@ public final class Main {
 	
 	public static ArduinoLink arduinoLink;	// Pour pouvoir accÃ©der au controller depuis la vue
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// MainFrame frame = new MainFrame();	/La vue est initialisÃ©e dans le controller
 		arduinoLink = new ArduinoLink();
 		arduinoLink.initialize();

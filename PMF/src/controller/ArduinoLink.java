@@ -44,7 +44,7 @@ public class ArduinoLink implements SerialPortEventListener {
 	/** Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
 
-	public void initialize() {
+	public void initialize() throws IOException {
 		CommPortIdentifier portId=null;
 		Enumeration portEnum=CommPortIdentifier.getPortIdentifiers();
 		
@@ -145,7 +145,7 @@ public class ArduinoLink implements SerialPortEventListener {
 				
 				
 			} catch(Exception e) {
-				frame.errorPopUp(e.getMessage());
+				//frame.errorPopUp(e.getMessage());
 			}
 		}
 	}
@@ -165,7 +165,7 @@ public class ArduinoLink implements SerialPortEventListener {
 		try {
 			output.write(strToSend.getBytes());
 		} catch (IOException e) {
-			frame.errorPopUp(e.getMessage());
+			//frame.errorPopUp(e.getMessage());
 		}
 	}
 }
