@@ -1,4 +1,4 @@
-/**
+ /**
  * Bibliothèques
  */
 #include "DHT.h"
@@ -109,7 +109,7 @@ void loop() {
   serialWrite["dht22Temp"] = tDHT;
   serialWrite["dht22Hygro"] = hDHT;
   serialWrite["diodeTemp"] = tDiode;
-  serialWrite["diodeExt"] = tDiode;
+  serialWrite["diodeExt"] = tDiodeExt;
   serialWrite.printTo(Serial); Serial.println("");
 
   //Température de consigne
@@ -117,7 +117,8 @@ void loop() {
   else                 digitalWrite(MOSFETPIN, LOW);
 
   //Ventilateur (consigne)
-  digitalWrite(VENTIPIN, ventilateur);
+  if(ventilateur) digitalWrite(VENTIPIN, HIGH);
+  else            digitalWrite(VENTIPIN, LOW);
 
   //Affiche température diode intérieure sur LCD
   lcd.setCursor(4, 0);
