@@ -140,6 +140,8 @@ public class ArduinoLink implements SerialPortEventListener {
 			}
 		}
 	}
+	
+	// Ces 3 fonctions servent à envoyer les données à l'Arduino
 	public void setConsigne(double consigne) {
 		this.fridge.setTempConsigne(consigne);
 		sendJsonToArduino();
