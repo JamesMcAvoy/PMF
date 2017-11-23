@@ -3,6 +3,10 @@ package model;
 
 
 public class Fridge {
+	
+	private static double a=17.271;	// Constantes pour calculer le point de rosée
+	private static double b=237.7;	// Valables pour des températures entre 0 et 60°C
+	
 	private double internalTemp;
 	private double externalTemp;
 	private double internalHygro;
@@ -40,11 +44,11 @@ public class Fridge {
 			// Envoyer une erreure de type température hors de range.
 			return 0;
 		}else {
-			return this.maxTemp=237.7*valIntermediaire(this.internalTemp, this.internalHygro)/(17.27-valIntermediaire(this.internalTemp, this.internalHygro));
+			return (b*valIntermediaire(this.internalTemp, this.internalHygro))/(a-valIntermediaire(this.internalTemp, this.internalHygro));
 		}
 	}
 	private static double valIntermediaire(double temp, double hum) {
-		return 17.27*temp/(237.7+temp) + Math.log(hum);
+		return (a*temp/(b+temp))+Math.log(hum/100.0);
 	}
 	
 	// Envoie un tableau à la vue pour afficher les graphiques
