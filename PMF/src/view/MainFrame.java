@@ -79,8 +79,10 @@ public class MainFrame extends JFrame implements ActionListener{
 		switchBoutonFan.setBackground(Color.RED);
 		
 		consigneField.setHorizontalAlignment(JTextField.CENTER);
-		consigneField.setPreferredSize(new Dimension(200,100));
-		consigneField.setText("18");		
+		consigneField.setPreferredSize(new Dimension(500,300));
+		consigneField.setText("18");	
+		
+		rosee.setPreferredSize(new Dimension(1000,200));
 		
 		double[] xDataDefault = new double[] { 0.0, 1.0};
 		double[] yDataDefault = new double[] { 0.0, 1.0};
@@ -120,11 +122,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		gbc.gridx=2;
 		gbc.gridy=0;
-		panel.add(intHygro, gbc);
+		panel.add(switchBoutonFan, gbc);
 		
 		gbc.gridx=2;
 		gbc.gridy=1;
-		panel.add(switchBoutonFan, gbc);
+		panel.add(intHygro, gbc);
 		
 		
 		gbc.gridx=2;
@@ -159,7 +161,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		}else if(arg0.getSource() == switchBoutonFan) {
 			if(switchBoutonFan.getBackground()==Color.RED) {
 				System.out.println("hey");
-				switchBoutonFan.setText("D2sactiver le ventilateur!");
+				switchBoutonFan.setText("Désactiver le ventilateur!");
 				switchBoutonFan.setBackground(Color.GREEN);
 				//Activer le ventilo
 				Main.arduinoLink.switchFan();
